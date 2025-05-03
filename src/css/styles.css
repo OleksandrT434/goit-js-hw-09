@@ -18,7 +18,7 @@
 @import url('./footer.css');
 
 
-.gallery-item {
+.gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
@@ -87,8 +87,8 @@
   outline: none;
   border: 1px solid #ccc;
   border-radius: 4px;
-  transition: border-color 0.3s;
-  margin-top: 8px;
+  transition: border-color 0.3s; 
+  margin-bottom: 16px;
 }
 
 .feedback-form input {
