@@ -7,10 +7,12 @@ const STOR_KEY = "feedback-form-state";
 
 const form = document.querySelector(".feedback-form");
 const formMessage = form.querySelector("textarea");
+const formEmail = form.querySelector('input[name="email"]');
 
 getInfo()
 
 form.addEventListener('submit', handForm);
+
 
 function handForm(e) {
     e.preventDefault();
@@ -41,6 +43,7 @@ function handText() {
     localStorage.setItem(STOR_KEY, JSON.stringify(formData));
     }
     formMessage.addEventListener("input", handText);
+    formEmail.addEventListener("input", handText);
 
 
 
