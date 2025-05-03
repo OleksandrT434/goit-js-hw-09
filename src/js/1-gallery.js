@@ -71,7 +71,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 
-const box = document.querySelector('.gallery-item');
+const box = document.querySelector('.gallery');
 
 
 //////////////////////////////////////
@@ -103,7 +103,7 @@ renderImages();
 
 
 /////////////////////////////////////////////////////
-new SimpleLightbox('.gallery-item a', {
+new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
     captionDelay: 250,
 });
