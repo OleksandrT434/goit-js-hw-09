@@ -1,66 +1,56 @@
-const formData = {
-    email: " ",
-    message: " ",
+let formData = {
+    email: "",
+    message: "",
 }
 
-const STOR_KEY = "feedback-form-state";
+///////////////////////////////////////////////////////////
 
+const STOR_KEY = "feedback-form-state";
 const form = document.querySelector(".feedback-form");
-const formMessage = form.querySelector("textarea");
-const formEmail = form.querySelector('input[name="email"]');
 
 getInfo()
 
-form.addEventListener('submit', handForm);
+form.addEventListener("input", handForm);
 
+//////////////////////////////////////////////////////////
 
 function handForm(e) {
+    formData[e.target.name] = e.target.value.trim();
+    localStorage.setItem(STOR_KEY, JSON.stringify(formData));
+}
+form.addEventListener("submit", function (e) {
     e.preventDefault();
-    const form = e.currentTarget;
 
     const email = form.elements.email.value.trim();
     const message = form.elements.message.value.trim();
 
     if (!email || !message) {
-        alert("Fill please all fields");
+        alert("Please fill in all fields");
         return;
     }
-
-    formData.email = email;
-    formData.message = message;
-
-    localStorage.setItem(STOR_KEY, JSON.stringify(formData));
-    console.log(formData);
+    console.log({ email, message });
 
     localStorage.removeItem(STOR_KEY);
     form.reset();
-}
 
-function handText() {
-    formData.message = form.elements.message.value.trim();
-    formData.email = form.elements.email.value.trim();
-
-    localStorage.setItem(STOR_KEY, JSON.stringify(formData));
-    }
-    formMessage.addEventListener("input", handText);
-    formEmail.addEventListener("input", handText);
-
-
+    formData = {
+        email: "",
+        message: "",
+    };
+});
+    
 
 function getInfo() {
     const savedData = localStorage.getItem(STOR_KEY);
     if (!savedData) return;
 
     try {
-        const saveInfo = JSON.parse(savedData);
+        formData = JSON.parse(savedData) || {};
 
-        form.elements.email.value = saveInfo.email || "";
-        formMessage.value = saveInfo.message || ""; 
-
-        formData.email = saveInfo.email || "";
-        formData.message = saveInfo.message || "";
+        form.elements.email.value = formData.email || "";
+        form.elements.message.value = formData.message || "";
     } catch (error) {
-        console.log();
+        console.log("error");
     }
 }
    
